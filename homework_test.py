@@ -89,7 +89,7 @@ def print_param_function(frame: inspect) -> str:
     func_arg_value = []
     for item in args:
         func_arg_value.append(values[item])
-    result = f"{func_name.replace('_', ' ').title()} [{", ".join([*func_arg_value])}]"
+    result = f"{func_name} [{", ".join([*func_arg_value])}]"
     print(result)
     return result
 
