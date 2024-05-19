@@ -81,27 +81,22 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def print_param_function(frame: inspect) -> str:
-    args, _, _, values = inspect.getargvalues(frame)
-    func_name = inspect.getframeinfo(frame)[2].replace('_', ' ').title()
-    func_arg_value = []
-    for item in args:
-        func_arg_value.append(values[item])
-    result = f"{func_name} [{", ".join([*func_arg_value])}]"
+def print_param_func(func, *args) -> str:
+    result = f"{func.__name__.replace('_', ' ').title()} [{", ".join([*args])}]"
     print(result)
     return result
 
 
 def open_browser(browser_name):
-    actual_result = print_param_function(inspect.currentframe())
+    actual_result = print_param_func(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = print_param_function(inspect.currentframe())
+    actual_result = print_param_func(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = print_param_function(inspect.currentframe())
+    actual_result = print_param_func(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
