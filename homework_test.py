@@ -82,7 +82,7 @@ def test_readable_function():
 
 
 def print_param_func(func, *args) -> str:
-    result = f"{func.__name__.replace('_', ' ').title()} [{", ".join([*args])}]"
+    result = f"{func.__name__.replace('_', ' ').title()} [{', '.join([*args])}]"
     print(result)
     return result
 
